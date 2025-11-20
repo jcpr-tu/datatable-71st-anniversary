@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>ระบบ E-learning หลักสูตรอบรมพัฒนาทักษะการผลิตเสียงบรรยายภาพสำหรับนักสื่อสารโดยแกนนำผู้ผลิต (ออนไลน์)</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="https://quota.jc.tu.ac.th/images/jc_logo.png" type="image/png">
+  
+  <style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600&display=swap');
+
+    body {
+      font-family: "Noto Sans Thai", sans-serif;
+      background-color: #f4f4f4; /* สีพื้นหลังเว็บ */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+
+    /* กล่องหลักตรงกลาง */
+    .main-container {
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      text-align: center;
+      max-width: 700px;
+      width: 100%;
+    }
+
+    .logo-row {
+      margin-bottom: 20px;
+    }
+
+    /* 1. โลโก้ */
+    .logo {
+      width: 100px;
+      margin-bottom: 20px;
+    }
+
+    .logo-partner {
+      width: 100px; /* ขนาดกว้าง 100px เท่ากัน */
+      margin: 5px 10px; /* เพิ่มระยะห่างเล็กน้อย */
+      vertical-align: middle; /* จัดให้อยู่กึ่งกลางแนวตั้ง */
+    }
+
+    .logo-ad {
+      width: 150px; /* ขนาดใหญ่ขึ้น */
+      margin-bottom: 20px;
+    }
+
+    /* 2. ชื่อโครงการ */
+    .title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 30px;
+      color: #333;
+    }    
+
+    
+    .btn-custom {
+      background-color: #743d88; /* สีม่วง (เหมือนในหน้า login) */
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      text-decoration: none; /* กันกรณีใช้แท็ก <a> */
+      font-family: "Noto Sans Thai", sans-serif;
+    }
+
+    .btn-custom:hover {
+      background-color: #5e0f83;
+    }
+
+    /* ปรับขนาดตัวอักษรบนมือถือ */
+    @media (max-width: 768px) {
+      .title {
+        font-size: 1.2rem;
+      }
+      .main-container {
+        padding: 30px;
+      }
+      .logo-partner {
+        width: 80px;
+        margin: 5px;
+      }
+    }
+
+     @media (max-height: 500px) and (orientaion: landscape){
+       body{
+         height: auto;
+         align-items: flex-start;
+         padding-top: 40px;
+         padding-bottom: 40px;
+       }
+      .logo-partner {
+        width: 60px;
+      }
+      .main-container{
+        padding: 25px;
+      }
+      .title{
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-container">
+    
+    <div class="logo-row">
+      <img src="https://raw.githubusercontent.com/jcpr-tu/datatable-71st-anniversary/main/Logo 71 rst.png" alt="Logo 71" class="logo-partner">
+      <img src="https://quota.jc.tu.ac.th/images/jc_logo.png" alt="Logo JC" class="logo-partner">
+    </div>
+    
+    <h1 class="title">
+      Datatable ระบบรับบริจาคออนไลน์ 71 ปี คณะวารสารศาสตร์และสื่อสารมวลชน <br>
+      ยินดีต้อนรับ
+    </h1>
+    
+    <button class="btn-custom" onclick="redirectToApp()">
+      เข้าสู่ระบบ
+    </button>
+  </div>
+  
+  <script>
+    // --- (ฟังก์ชันตรวจสอบอุปกรณ์) ---
+    function isIOS() {
+      return /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    }
+    function isFacebookApp() {
+      return /FBAN|FBAV/i.test(navigator.userAgent);
+    }
+    function isLineApp() {
+      return /Line/i.test(navigator.userAgent);
+    }
+    
+    // --- 3. [แก้ไข] ฟังก์ชันสำหรับปุ่ม (เปลี่ยนชื่อจาก generateLink) ---
+    function redirectToApp() {
+      
+      // 1. Array URLs (เหมือนเดิม)
+      const scriptUrls = [
+        'https://script.google.com/macros/s/AKfycby0W1udBjJgmjhPq7bRKvNgvGSMmWfHf_zaBpSZKC6zGp3S8An3zBBONlA75DXuf6AXkg/exec' // URL จากบัญชีที่ 1
+
+      ];
+
+      
+      const randomIndex = Math.floor(Math.random() * scriptUrls.length);
+      const selectedUrl = scriptUrls[randomIndex];
+      const safariUrl = 'x-safari-' + selectedUrl;
+
+      let finalUrl;
+
+      
+      if (isIOS() && (isFacebookApp() || isLineApp())) {
+        finalUrl = safariUrl;
+      } else {
+        finalUrl = selectedUrl;
+      }
+
+      
+      window.open(finalUrl, '_blank');
+    }
+  </script>
+</body>
+</html>
